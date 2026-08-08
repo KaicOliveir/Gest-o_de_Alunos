@@ -1,0 +1,6 @@
+node_modules/
+.env
+uploads/
+ADMIN_NAME=Administrador
+ADMIN_EMAIL=admin@sistema.com
+ADMIN_PASSWORD=enhadoADMIN@123

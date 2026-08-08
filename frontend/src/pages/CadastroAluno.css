@@ -1,0 +1,235 @@
+.cadastro-page {
+  min-height: 100vh;
+  padding: 32px;
+  background: var(--cor-fundo);
+}
+
+.cadastro-header {
+  margin-bottom: 24px;
+}
+
+.cadastro-header h1 {
+  margin: 12px 0 0;
+  font-size: 30px;
+}
+
+.cadastro-header p {
+  margin: 6px 0 0;
+  color: var(--cor-texto-suave);
+}
+
+.cadastro-form {
+  max-width: 1100px;
+}
+
+.form-section {
+  margin-bottom: 22px;
+  padding: 24px;
+
+  background: white;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.04);
+}
+
+.form-section-header {
+  margin-bottom: 20px;
+}
+
+.form-section-header h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.form-section-header p {
+  margin: 5px 0 0;
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field-wide {
+  grid-column: span 2;
+}
+
+.field-full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 46px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 9px;
+
+  outline: none;
+
+  background: white;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--cor-primaria);
+
+  box-shadow:
+    0 0 0 3px rgba(8,123,11,0.08);
+}
+
+.secondary-button {
+  margin-top: 18px;
+
+  padding: 10px 14px;
+
+  border: 1px solid var(--cor-primaria);
+  border-radius: 9px;
+
+  background: white;
+  color: var(--cor-primaria);
+
+  font-weight: 700;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-top: 16px;
+}
+
+.item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding: 12px 14px;
+
+  background: #f7faf6;
+
+  border: 1px solid var(--cor-borda);
+  border-radius: 10px;
+}
+
+.item-card span {
+  color: var(--cor-texto-suave);
+  font-size: 13px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  padding-bottom: 40px;
+}
+
+.cancel-button,
+.save-button {
+  min-width: 140px;
+  height: 46px;
+
+  border-radius: 9px;
+
+  font-weight: 700;
+}
+
+.cancel-button {
+  border: 1px solid var(--cor-borda);
+  background: white;
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  border: none;
+
+  background: var(--cor-primaria);
+  color: white;
+}
+
+.save-button:hover {
+  background: var(--cor-primaria-escura);
+}
+
+.save-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.cadastro-error {
+  margin-bottom: 18px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #ffcdd2;
+  border-radius: 9px;
+
+  background: #ffebee;
+  color: var(--cor-erro);
+}
+
+@media (max-width: 850px) {
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .field-wide {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .cadastro-page {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .field-wide,
+  .field-full {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+  }
+
+  .cancel-button,
+  .save-button {
+    width: 100%;
+  }
+}
