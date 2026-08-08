@@ -1,7 +1,5 @@
 const express = require('express');
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
 const {
   uploadDocumento,
@@ -11,42 +9,13 @@ const {
   excluirDocumento
 } = require('../controllers/documentoController');
 
-const autenticarToken = require('../middleware/authMiddleware');
+const autenticarToken =
+  require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const alunoId = req.params.alunoId;
-
-    const pasta = path.join(
-      __dirname,
-      '..',
-      '..',
-      'uploads',
-      'alunos',
-      alunoId
-    );
-
-    fs.mkdirSync(pasta, {
-      recursive: true
-    });
-
-    cb(null, pasta);
-  },
-
-  filename: (req, file, cb) => {
-    const extensao = path.extname(file.originalname);
-
-    const nome =
-      `${Date.now()}-${Math.round(Math.random() * 1E9)}${extensao}`;
-
-    cb(null, nome);
-  }
-});
-
 const upload = multer({
-  storage,
+  storage: multer.memoryStorage(),
 
   limits: {
     fileSize: 10 * 1024 * 1024
@@ -71,16 +40,12 @@ const upload = multer({
   }
 });
 
-
-// LISTAR TODOS OS DOCUMENTOS
 router.get(
   '/documentos',
   autenticarToken,
   listarTodosDocumentos
 );
 
-
-// ENVIAR DOCUMENTO PARA UM ALUNO
 router.post(
   '/alunos/:alunoId/documentos',
   autenticarToken,
@@ -88,28 +53,22 @@ router.post(
   uploadDocumento
 );
 
-
-// LISTAR DOCUMENTOS DE UM ALUNO
 router.get(
   '/alunos/:alunoId/documentos',
   autenticarToken,
   listarDocumentos
 );
 
-
-// VISUALIZAR ARQUIVO PROTEGIDO
 router.get(
   '/documentos/:id/arquivo',
   autenticarToken,
   visualizarDocumento
 );
 
-// EXCLUIR DOCUMENTOS
 router.delete(
   '/documentos/:id',
   autenticarToken,
   excluirDocumento
 );
-
 
 module.exports = router;
